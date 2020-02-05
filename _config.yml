@@ -1,22 +1,23 @@
 # Site settings
-title:          Tale
-description:    "Minimal Jekyll theme for storytellers"
-baseurl:        "/tale"
-url:            "https://chesterhow.github.io"
+title:          정리용
+description:    "Blog"
+baseurl:        ""
+url:            "https://cleanlight93.github.io"
 
 # Google Analytics
 google_analytics: UA—XXXXXXXX-X
 
 # Author
 author:
-  name:         Chester How
-  url:          https://chester.how
-  email:        chesterhow@gmail.com
+  name:         Choi Gwang-cheol
+  url:          blog.naver.com/myosotis2012
+  email:        myosotis2012@naver.com
 
 # Build settings
 markdown:       kramdown
-include:
-  - _pages
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
 
 # Assets
 sass:
