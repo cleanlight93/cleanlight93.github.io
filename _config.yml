@@ -15,9 +15,6 @@ author:
 
 # Build settings
 markdown:       kramdown
-lsi: false
-excerpt_separator: "\n\n"
-incremental: false
 
 # Assets
 sass:
