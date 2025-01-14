@@ -3,17 +3,17 @@
 /* 블로그 제목의 크기를 줄이기 */
 header h1,
 .page-header h1 {
-  font-size: 1.5rem !important; /* 기본 크기보다 작게 조정 */
+  font-size: 1.0rem !important; /* 기본 크기보다 작게 조정 */
 }
 
 /* 메뉴(내비게이션)의 폰트 크기 줄이기 */
 nav,
 .menu,
 .navbar {
-  font-size: 0.9rem !important;
+  font-size: 0.6rem !important;
 }
 
 /* 추가적으로, 메뉴 아이템 개별 조정 (클래스나 id에 따라) */
 .menu-item {
-  font-size: 0.9rem;
+  font-size: 0.6rem;
 }
