@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "e15055681656af20",
+        "id": "974465f21164b1ae",
         "type": "tabs",
         "children": [
           {
-            "id": "324b6f63baa8dc58",
+            "id": "2c23c469441b4cf4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "카테고리/글2.md",
+                "file": "index.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "글2"
+              "title": "index"
             }
           }
         ]
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "카테고리/글2.md",
+                "file": "index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "글2의 백링크"
+              "title": "index의 백링크"
             }
           },
           {
@@ -112,12 +112,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "카테고리/글2.md",
+                "file": "index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "글2의 나가는 링크"
+              "title": "index의 나가는 링크"
             }
           },
           {
@@ -139,10 +139,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "카테고리/글2.md"
+                "file": "index.md"
               },
               "icon": "lucide-list",
-              "title": "글2 개요"
+              "title": "index 개요"
             }
           },
           {
@@ -173,11 +173,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "324b6f63baa8dc58",
+  "active": "2c23c469441b4cf4",
   "lastOpenFiles": [
-    "카테고리/글1.md",
-    "카테고리/글2.md",
     "index.md",
+    "카테고리/글2.md",
+    "카테고리/글1.md",
     "카테고리"
   ]
 }
