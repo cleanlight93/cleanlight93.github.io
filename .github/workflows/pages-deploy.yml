@@ -1,0 +1,36 @@
+name: Deploy Quartz Blog Without Node.js
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 리포지토리 체크아웃
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Quartz의 content와 public 폴더 연동 (빌드 없이 직접 사용)
+      - name: Prepare Static Files
+        run: |
+          mkdir -p public
+          cp -r content/* public/
+
+      # GitHub Pages에 업로드
+      - name: Deploy to GitHub Pages
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./public
+
+      # GitHub Pages로 배포
+      - name: Deploy
+        uses: actions/deploy-pages@v1
