@@ -3,19 +3,19 @@
 /* 블로그 제목의 크기를 줄이기 */
 header h1,
 .page-header h1 {
-  font-size: 1.2rem !important;
+  font-size: 1.4rem !important;
 }
 
 /* 메뉴(내비게이션)의 폰트 크기 줄이기 */
 nav,
 .menu,
 .navbar {
-  font-size: 0.6rem !important;
+  font-size: 0.8rem !important;
 }
 
 /* 메뉴 아이템 개별 조정 (클래스나 id에 따라) */
 .menu-item {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
 }
 
 /* 블로그 전체 제목 조절 (예: 사이트의 메인 타이틀) */
@@ -29,4 +29,11 @@ nav,
 .folder-title,
 .folder-name {
   font-size: 0.8rem !important;
+}
+
+/* 폴더 내 포스트 제목의 폰트 크기 줄이기 */
+/* 예시 선택자: .post-title (혹은 목록 내부의 a 태그 등) */
+.folder-content .post-title,
+.folder-content .post-item a {
+  font-size: 0.7rem !important; /* 폴더 내 포스트 제목의 크기 조절 */
 }
