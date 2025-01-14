@@ -31,9 +31,6 @@ nav,
   font-size: 0.8rem !important;
 }
 
-/* 폴더 내 포스트 제목의 폰트 크기 줄이기 */
-/* 예시 선택자: .post-title (혹은 목록 내부의 a 태그 등) */
-.folder-content .post-title,
-.folder-content .post-item a {
-  font-size: 0.7rem !important; /* 폴더 내 포스트 제목의 크기 조절 */
+a {
+  font-size: 0.7rem !important;
 }
