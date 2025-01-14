@@ -1,16 +1,6 @@
 @use "./base.scss";
 
 
-/* 블로그 제목의 크기를 조절하기 */
-.page-title h1 {
-  font-size: 2.2rem !important;
-}
-
-header h1,
-.page-header h1 {
-    font-size: 2.0rem!important
-}
-
 /* 메뉴(내비게이션)의 폰트 크기 줄이기 */
 nav,
 .menu,
@@ -22,7 +12,6 @@ nav,
 .menu-item {
   font-size: 0.7rem;
 }
-
 
 /* 포스트가 들어있는 폴더명 폰트 크기 줄이기 */
 /*  */
