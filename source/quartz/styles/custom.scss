@@ -2,7 +2,7 @@
 
 /* 블로그 제목의 크기를 줄이기 */
 header h1,
-.page-header h1 {
+.page-title h2 {
   font-size: 1.4rem !important;
 }
 
@@ -26,11 +26,18 @@ nav,
 
 /* 포스트가 들어있는 폴더명 폰트 크기 줄이기 */
 /*  */
-.folder-title,
-.folder-name {
+.folder-button {
   font-size: 0.8rem !important;
 }
 
-a {
+.folder-outer open{
+  font-size: 0.7rem !important;
+}
+
+.internal tag-link {
+  font-size: 0.6rem !important;
+}
+
+.content {
   font-size: 0.7rem !important;
 }
