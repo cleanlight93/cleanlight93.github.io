@@ -3,7 +3,7 @@
 /* 블로그 제목의 크기를 줄이기 */
 header h1,
 .page-header h1 {
-  font-size: 1.0rem !important; /* 기본 크기보다 작게 조정 */
+  font-size: 1.2rem !important;
 }
 
 /* 메뉴(내비게이션)의 폰트 크기 줄이기 */
@@ -13,7 +13,20 @@ nav,
   font-size: 0.6rem !important;
 }
 
-/* 추가적으로, 메뉴 아이템 개별 조정 (클래스나 id에 따라) */
+/* 메뉴 아이템 개별 조정 (클래스나 id에 따라) */
 .menu-item {
   font-size: 0.6rem;
+}
+
+/* 블로그 전체 제목 조절 (예: 사이트의 메인 타이틀) */
+.blog-title, 
+.site-title {
+  font-size: 1.0rem !important; /* 필요에 따라 값을 조정하세요 */
+}
+
+/* 포스트가 들어있는 폴더명 폰트 크기 줄이기 */
+/*  */
+.folder-title,
+.folder-name {
+  font-size: 0.8rem !important;
 }
