@@ -19,17 +19,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Quartz의 content와 public 폴더 연동 (빌드 없이 직접 사용)
-      - name: Prepare Static Files
+      # public 폴더 없이 직접 content/ 폴더 업로드
+      - name: Prepare Static Files (Direct Upload)
         run: |
-          mkdir -p public
-          cp -r content/* public/
+          cp -r source/content/ .
 
       # GitHub Pages에 업로드
       - name: Deploy to GitHub Pages
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./public
+          path: ./source/content/
 
       # GitHub Pages로 배포
       - name: Deploy
