@@ -2,7 +2,7 @@
 
 header h1,
 .page-header h1 {
-  font-size: 1.7rem !important; /* 기본 크기보다 작게 조정 */
+  font-size: 1.75rem !important; /* 기본 크기보다 작게 조정 */
 }
 
 /* 메뉴(내비게이션)의 폰트 크기 줄이기 */
@@ -14,7 +14,7 @@ nav,
 
 /* 메뉴 아이템 개별 조정 (클래스나 id에 따라) */
 .menu-item {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 
 /* 포스트가 들어있는 폴더명 폰트 크기 줄이기 */
@@ -24,17 +24,17 @@ nav,
 }
 
 .folder-outer open{
-  font-size: 0.7rem !important;
+  font-size: 0.8rem !important;
 }
 
 .internal tag-link {
-  font-size: 0.6rem !important;
-}
-
-.content {
   font-size: 0.7rem !important;
 }
 
+.content {
+  font-size: 0.8rem !important;
+}
+
 .content-meta {
-  font-size: 0.6rem !important;
+  font-size: 0.8rem !important;
 }
