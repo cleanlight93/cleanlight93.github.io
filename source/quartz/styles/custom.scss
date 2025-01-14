@@ -1,5 +1,9 @@
 @use "./base.scss";
 
+header h1,
+.page-header h1 {
+  font-size: 1.7rem !important; /* 기본 크기보다 작게 조정 */
+}
 
 /* 메뉴(내비게이션)의 폰트 크기 줄이기 */
 nav,
