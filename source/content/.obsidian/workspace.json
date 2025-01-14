@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "974465f21164b1ae",
+        "id": "70133a4e02c81589",
         "type": "tabs",
         "children": [
           {
-            "id": "2c23c469441b4cf4",
+            "id": "9219b156c86d5600",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "index"
+              "title": "새 탭"
             }
           }
         ]
@@ -173,9 +169,14 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "2c23c469441b4cf4",
+  "active": "b77831b90dd9f87b",
   "lastOpenFiles": [
+    "PF시공사별기초자산금액통계/PF시공사별기초자산금액_20250114.md",
+    "PF시공사별기초자산금액통계",
+    "새 폴더",
     "index.md",
+    "신용보강기관별기초자산금액통계/신용보강기관별기초자산금액_20250114.md",
+    "신용보강기관별기초자산금액통계",
     "카테고리/글2.md",
     "카테고리/글1.md",
     "카테고리"
