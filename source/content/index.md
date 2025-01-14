@@ -1,7 +1,5 @@
 ---
-title: My GitHub Pages Notebook!
+title: 채권블로그 토이프로젝트입니다.
 ---
 
-Hello world!
-
-Write some words here!
+안녕하세요!
