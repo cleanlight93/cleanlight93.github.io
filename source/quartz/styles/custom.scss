@@ -1,14 +1,9 @@
 @use "./base.scss";
 
-/* 블로그 전체 제목 조절 (예: 사이트의 메인 타이틀) */
-.blog-title, 
-.site-title {
-  font-size: 2.4rem !important; /* 필요에 따라 값을 조정하세요 */
-}
 
-/* 페이지 제목의 크기를 조절하기 */
-header h1,
-.page-title h1 {
+/* 블로그 제목의 크기를 조절하기 */
+header h2,
+.page-title h2 {
   font-size: 2.4rem !important;
 }
 
