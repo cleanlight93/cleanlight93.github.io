@@ -11,10 +11,10 @@
             "id": "9219b156c86d5600",
             "type": "leaf",
             "state": {
-              "type": "empty",
+              "type": "graph",
               "state": {},
-              "icon": "lucide-file",
-              "title": "새 탭"
+              "icon": "lucide-git-fork",
+              "title": "그래프 뷰"
             }
           }
         ]
@@ -169,8 +169,14 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b77831b90dd9f87b",
+  "active": "9219b156c86d5600",
   "lastOpenFiles": [
+    "자동화/PF시공사별기초자산금액통계/PF시공사별기초자산금액_20250114.md",
+    "자동화/PF시공사별기초자산금액통계",
+    "자동화/신용보강기관별기초자산금액통계/신용보강기관별기초자산금액_20250114.md",
+    "자동화/신용보강기관별기초자산금액통계",
+    "자동화/text",
+    "자동화",
     "PF시공사별기초자산금액통계/PF시공사별기초자산금액_20250114.md",
     "PF시공사별기초자산금액통계",
     "새 폴더",
