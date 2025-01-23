@@ -13,7 +13,8 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "plausible",
+      provider: "google",
+      trackingId: "G-ZBQ0EBDE1J",
     },
     locale: "ko-KR",
     baseUrl: "https://cleanlight93.github.io/",
