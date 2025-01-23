@@ -14,7 +14,7 @@ const config: QuartzConfig = {
     enablePopovers: true,
     analytics: {
       provider: "google",
-      trackingId: "G-ZBQ0EBDE1J",
+      tagId: "G-ZBQ0EBDE1J",
     },
     locale: "ko-KR",
     baseUrl: "https://cleanlight93.github.io/",
