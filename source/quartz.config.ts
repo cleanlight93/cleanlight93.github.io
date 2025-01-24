@@ -17,7 +17,7 @@ const config: QuartzConfig = {
       tagId: "G-ZBQ0EBDE1J",
     },
     locale: "ko-KR",
-    baseUrl: "https://cleanlight93.github.io/",
+    baseUrl: "cleanlight93.github.io",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
