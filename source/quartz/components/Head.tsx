@@ -40,6 +40,7 @@ export default (() => {
         <link rel="icon" href={iconPath} />
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
+        <meta name="robots" content="index, follow" />
 
         {/* 
           ---- 여기 아래처럼 Google Analytics 코드 추가 ----
