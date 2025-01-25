@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://cleanlight93.github.io/sitemap.xml
