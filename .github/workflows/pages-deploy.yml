@@ -43,7 +43,7 @@ jobs:
 
       # 3. source/content/ 폴더를 GitHub Pages 아티팩트로 업로드
       - name: Upload artifact to GitHub Pages
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v4
         with:
           path: source/content
 
