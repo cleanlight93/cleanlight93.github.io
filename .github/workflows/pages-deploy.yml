@@ -19,9 +19,9 @@ jobs:
     steps:
       # 1. 리포지토리 Checkout (최신 커밋만 가져오기)
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 6
+          fetch-depth: 20
 
       # 2. source/content/ 내 변경사항이 있는지 체크 (변경사항이 없으면 스킵)
       - name: Check for changes in source/content
@@ -49,4 +49,4 @@ jobs:
 
       # 4. GitHub Pages로 배포
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
