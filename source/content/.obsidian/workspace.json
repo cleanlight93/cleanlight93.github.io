@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "자동화/SB리그테이블/SB집계_20250203.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "SB집계_20250203"
             }
           }
         ]
@@ -40,7 +40,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "파일 탐색기"
@@ -164,10 +165,10 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:퀵 스위처 열기": false,
+      "switcher:빠른 전환기 열기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
       "graph:그래프 뷰 열기": false,
       "canvas:새 캔버스 만들기": false,
-      "daily-notes:오늘의 데일리 노트 열기": false,
       "templates:템플릿 삽입": false,
       "command-palette:명령어 팔레트 열기": false,
       "obsidian-git:Open Git source control": false
@@ -175,6 +176,9 @@
   },
   "active": "9219b156c86d5600",
   "lastOpenFiles": [
+    "자동화/FB리그테이블/FB집계_20250203.md",
+    "자동화/여전채발행만기통계/여전채발행만기통계_20250203.md",
+    "index.md",
     "자동화/FB리그테이블/FB집계_20250120.md",
     "자동화/단기유동화증권_유통금리/PF유통금리_20250124.md",
     "자동화/FB리그테이블/FB집계_20250124.md",
@@ -200,9 +204,6 @@
     "자동화/여전채발행만기통계/여전채발행만기통계_20250121.md",
     "자동화/유동화증권_신용보강기관/신용보강기관별기초자산금액_20250121.md",
     "자동화/유동화증권_PF시공사/PF시공사별기초자산금액_20250121.md",
-    "자동화/SB리그테이블/SB집계_20250120.md",
-    "자동화/SB리그테이블/SB집계_20250117.md",
-    "자동화/FB리그테이블/FB집계_20250117.md",
     "자동화/FB리그테이블",
     "자동화/SB리그테이블",
     "자동화/여전채발행만기통계",
