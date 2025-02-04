@@ -5,8 +5,12 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
-jobs:
+# 동일한 브랜치에 대해 실행 중인 이전 워크플로우를 취소하고 마지막 것만 실행하도록 설정
+concurrency:
+  group: "build-and-deploy-${{ github.ref }}"
+  cancel-in-progress: true
 
+jobs:
   build-and-test:
     runs-on: ubuntu-latest
     permissions:
