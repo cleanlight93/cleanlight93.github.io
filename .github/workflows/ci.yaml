@@ -16,6 +16,10 @@ jobs:
     permissions:
       contents: write
     steps:
+      # 일정 시간 대기해서 여러 푸시가 연달아 일어났을 때 마지막 푸시만 반영되도록 함 (여기서는 60초)
+      - name: Wait for stabilization (debounce)
+        run: sleep 60
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
