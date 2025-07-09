@@ -4,22 +4,22 @@
   padding: 1rem;
   margin: 1rem 0;
   border-radius: 0.5rem;
-  border: 2px solid var(--interactive-accent);
-  background-color: var(--background-secondary);
-  color: var(--text-normal);
+  border: 2px solid #ff6600;       /* 강조색으로 고정 */
+  background-color: #f5f5f5;       /* 연한 회색 */
+  color: #333333;                  /* 진한 회색(가독성 높음) */
   line-height: 2.0;
 }
 
 /* ——— Light Theme ——— */
 :root[saved-theme="light"] .custom-box {
-  background-color: var(--background-primary);
-  border-color: #000;
-  color: #000;
+  background-color: #ffffff;       /* 완전한 흰색 */
+  border-color: #000000;           /* 검은색 테두리 */
+  color: #000000;                  /* 검은색 텍스트 */
 }
 
 /* ——— Dark Theme ——— */
 :root[saved-theme="dark"] .custom-box {
-  background-color: color-mix(in srgb, var(--interactive-accent) 20%, #000);
-  border-color: var(--interactive-accent);
-  color: var(--text-normal);
+  background-color: #1a1a1a;       /* 다크 모드용 진회색 배경 */
+  border-color: #ff6600;           /* 강조 주황색 유지 */
+  color: #dddddd;                  /* 연한 회색 텍스트 */
 }
