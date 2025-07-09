@@ -4,7 +4,6 @@
 
 /* Light 테마일 때 */
 :root[saved-theme="light"] .custom-box {
-  border: 1px solid #ccc;
   padding: 1em;
   border-radius: 6px;
   line-height: 2.0;
@@ -16,7 +15,6 @@
 
 /* Dark 테마일 때 */
 :root[saved-theme="dark"] .custom-box {
-  border: 1px solid #ccc;
   padding: 1em;
   border-radius: 6px;
   line-height: 2.0;
