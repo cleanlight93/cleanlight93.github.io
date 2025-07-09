@@ -1,18 +1,14 @@
 @use "./base.scss";
 
 /* custom-box.css */
-.custom-box {
+
+/* Light 테마일 때 */
+:root[saved-theme="light"] .custom-box {
   border: 1px solid #ccc;
   padding: 1em;
   border-radius: 6px;
   line-height: 2.0;
   margin: 1.5rem 0;
-  background-color: #f9f9f9;
-  color: #000000;
-}
-
-/* Light 테마일 때 */
-:root[saved-theme="light"] .custom-box {
   background-color: var(--background-primary-alt);
   color: var(--text-normal);
   border: 1px solid var(--background-modifier-border);
@@ -20,6 +16,11 @@
 
 /* Dark 테마일 때 */
 :root[saved-theme="dark"] .custom-box {
+  border: 1px solid #ccc;
+  padding: 1em;
+  border-radius: 6px;
+  line-height: 2.0;
+  margin: 1.5rem 0;
   background-color: var(--background-secondary);
   color: var(--text-normal);
   border: 1px solid var(--background-modifier-border);
