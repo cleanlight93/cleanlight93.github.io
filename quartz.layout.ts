@@ -17,8 +17,8 @@ export const sharedPageComponents: SharedLayout = {
   }),
 }
 
-// components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
+  // ── 본문 위쪽 영역 ────────────────────────────────────────────────────────────
   beforeBody: [
     Component.ConditionalRender({
       component: Component.Breadcrumbs(),
@@ -26,30 +26,79 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.ArticleTitle(),
     Component.ContentMeta(),
-    Component.TagList(),
+
+    // 태그 목록은 index 페이지에서는 필요 없으니 제외
+    Component.ConditionalRender({
+      component: Component.TagList(),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
   ],
+
+  // ── 왼쪽 사이드바 ────────────────────────────────────────────────────────────
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        { Component: Component.Darkmode() },
-        { Component: Component.ReaderMode() },
-      ],
+
+    // 일반 노트에는 검색·다크모드·리더모드를 Flex 박스로 묶어 배치
+    Component.ConditionalRender({
+      component: Component.Flex({
+        components: [
+          { Component: Component.Search(), grow: true },
+          { Component: Component.Darkmode() },
+          { Component: Component.ReaderMode() },
+        ],
+      }),
+      condition: (page) => page.fileData.slug !== "index",
     }),
+
+    // index 페이지는 말끔히 나열만
+    Component.ConditionalRender({
+      component: Component.Search(),
+      condition: (page) => page.fileData.slug === "index",
+    }),
+    Component.ConditionalRender({
+      component: Component.Darkmode(),
+      condition: (page) => page.fileData.slug === "index",
+    }),
+
     Component.Explorer(),
   ],
+
+  // ── 오른쪽 사이드바 ───────────────────────────────────────────────────────────
   right: [
-    Component.Graph(),
+    // 일반 노트용 기본 그래프
+    Component.ConditionalRender({
+      component: Component.Graph(),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
+
+    // index 전용, 깊이 제한 없는 전체 그래프
+    Component.ConditionalRender({
+      component: Component.Graph({
+        localGraph: { depth: -1 },
+      }),
+      condition: (page) => page.fileData.slug === "index",
+    }),
+
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
   ],
-}
 
+  // ── 본문 아래 영역 ────────────────────────────────────────────────────────────
+  afterBody: [
+    // index 페이지에만 최근 글 위젯을 붙인다
+    Component.ConditionalRender({
+      component: Component.RecentNotes({
+        title: "최근 글",
+        limit: 15,
+        showTags: true,
+        linkToMore: false,
+        filter: (f: QuartzPluginData) => f.slug !== "index",
+      }),
+      condition: (page) => page.fileData.slug === "index",
+    }),
+  ],
+}
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
@@ -68,41 +117,4 @@ export const defaultListPageLayout: PageLayout = {
     Component.Explorer(),
   ],
   right: [],
-}
-
-// components for the home page (index.md)
-export const homePageLayout: PageLayout = {
-  beforeBody: [
-    Component.ConditionalRender({
-      component: Component.Breadcrumbs(),
-      condition: (page) => page.fileData.slug == "index",
-    }),
-    Component.ArticleTitle(),
-    Component.ContentMeta(),
-  ],
-  left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
-    Component.Search(),
-    Component.Darkmode(),
-    Component.Explorer(),
-  ],
-  right: [
-    Component.Graph({
-      localGraph: {
-        depth: -1,  // 모든 페이지 보여줌
-
-      }
-    }),
-    Component.DesktopOnly(Component.TableOfContents()),
-  ],
-  afterBody: [
-    Component.RecentNotes({
-      title: "최근 글",
-      limit: 15,
-      showTags: true,
-      linkToMore: false,
-      filter: (f: QuartzPluginData) => f.slug !== "index" // index 페이지 제외
-    }),
-  ],
 }
