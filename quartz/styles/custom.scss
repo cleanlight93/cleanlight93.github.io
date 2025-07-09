@@ -11,14 +11,14 @@
 }
 
 /* ——— Light Theme ——— */
-:root[data-theme="light"] .custom-box {
+:root[saved-theme="light"] .custom-box {
   background-color: var(--background-primary);
   border-color: #000;
   color: #000;
 }
 
 /* ——— Dark Theme ——— */
-:root[data-theme="dark"] .custom-box {
+:root[saved-theme="dark"] .custom-box {
   background-color: color-mix(in srgb, var(--interactive-accent) 20%, #000);
   border-color: var(--interactive-accent);
   color: var(--text-normal);
