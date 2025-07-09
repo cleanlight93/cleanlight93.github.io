@@ -89,8 +89,8 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ConditionalRender({
       component: Component.RecentNotes({
         title: "최근 글",
-        limit: 15,
-        showTags: true,
+        limit: 10,
+        showTags: false,
         linkToMore: false,
         filter: (f: QuartzPluginData) => f.slug !== "index",
       }),
