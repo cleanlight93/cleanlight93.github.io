@@ -1,6 +1,7 @@
 @use "./base.scss";
 
 .custom-box {
-  /* 테두리만 지정 */
-  border: 2px solid var(--interactive-accent, #ff5722);
+    border: 1px solid #000;   /* 두께 1px, 실선, 검은색 테두리 */
+    /* background-color: transparent; 기본값이 투명이라 굳이 선언할 필요는 없습니다 */
+    padding: 10px;            /* 내부 여백 */
 }
