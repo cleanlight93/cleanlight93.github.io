@@ -71,7 +71,7 @@ export const defaultListPageLayout: PageLayout = {
 }
 
 // components for the home page (index.md)
-export const defaultContentPageLayout: PageLayout = {
+export const homePageLayout: PageLayout = {
   beforeBody: [
     Component.ConditionalRender({
       component: Component.Breadcrumbs(),
