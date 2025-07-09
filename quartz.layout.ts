@@ -39,7 +39,6 @@ export const defaultContentPageLayout: PageLayout = {
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
 
-    // 일반 노트에는 검색·다크모드·리더모드를 Flex 박스로 묶어 배치
     Component.ConditionalRender({
       component: Component.Flex({
         components: [
@@ -51,13 +50,14 @@ export const defaultContentPageLayout: PageLayout = {
       condition: (page) => page.fileData.slug !== "index",
     }),
 
-    // index 페이지는 말끔히 나열만
     Component.ConditionalRender({
-      component: Component.Search(),
-      condition: (page) => page.fileData.slug === "index",
-    }),
-    Component.ConditionalRender({
-      component: Component.Darkmode(),
+      component: Component.Flex({
+        components: [
+          { Component: Component.Search(), grow: true },
+          { Component: Component.Darkmode() },
+          { Component: Component.ReaderMode() },
+        ],
+      }),
       condition: (page) => page.fileData.slug === "index",
     }),
 
