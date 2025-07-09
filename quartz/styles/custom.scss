@@ -1,3 +1,23 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+.custom-box {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  border: 2px solid var(--interactive-accent);
+  background-color: var(--background-secondary);
+  color: var(--text-normal);
+  line-height: 1.6;
+}
+
+/* 밝은 테마용 배경 톤 */
+body.light, :root[data-theme="light"] {
+  --box-bg: color-mix(in srgb, var(--interactive-accent) 15%, white);
+}
+body.light .custom-box { background-color: var(--box-bg); }
+
+/* 어두운 테마용 배경 톤 */
+body.dark, :root[data-theme="dark"] {
+  --box-bg: color-mix(in srgb, var(--interactive-accent) 20%, black);
+}
+body.dark .custom-box { background-color: var(--box-bg); }
