@@ -9,7 +9,7 @@ tags:
   - 자기상관
 description: 내생성 정리 (개요)노트
 ---
-##### 개요
+### 개요
 회귀모형의 내생성(Endogeneity)은 추정량의 **편의(bias)** 를 발생시키거나 추정량의 **불일치성(inconsistency)** 을 초래한다. 구체적으로
 $$
 \mathbf{y}=\mathbf{X}\beta+\mathbf{u}
@@ -27,13 +27,13 @@ $$
 \mathbb{E}\left[\mathbf{u} \left|\mathbf{X}\right.\right]\neq0
 $$
 로도 표현할 수 있다. $\mathbb{E}[xu]=\mathbb{E}[x\mathbb{E}[u|x]]$이기 때문.
-##### 내생성이 문제가 되는 경우
+### 내생성이 문제가 되는 경우
 크게 아래와 같다.
-* 측정오류(measurement error) 가 있는 경우
+* 측정오류(measurement error)가 있는 경우
 * 유의미한 변수의 생략(omitted variable)이 존재하는 경우
 * 선택편향(selection bias)이 존재하는 경우
 * 변수가 동시에 결정되는 경우(sinultaneous equation) → **식별문제**
 
-##### 내생성 문제의 해결
+### 내생성 문제의 해결
 * GMM(또는 도구변수)을 사용
 * DID, LATE, 사용 가능하다면 RCT, 등을 사용
