@@ -6,7 +6,6 @@ tags:
   - 측정오류
   - 선택편향
   - 식별
-  - 자기상관
 description: 내생성 정리 (개요)노트
 ---
 ### 개요
@@ -16,7 +15,7 @@ $$
 $$
 의 회귀모형을 보자. 여기서 $\mathbf{y},\mathbf{u}\in\mathbb{R}^n$ 이고, $\mathbf{X}\in \mathbf{M}_{n\times k}$ , 및 $\beta\in\mathbb{R}^k$ 라고 하자. 또한
 $$
-\mathbf{u}\sim (0,\sigma^2\mathbf{I}_n)
+\mathbf{u}\sim WN(0,\sigma^2\mathbf{I}_n)
 $$
 이라고 하자. 내생성이란 독립변수와 오차항 사이에 상관관계가 존재한다는 것으로,
 $$
