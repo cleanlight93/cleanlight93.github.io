@@ -18,14 +18,18 @@ export function getDate(cfg: GlobalConfiguration, data: QuartzPluginData): Date 
   return data.dates?.[cfg.defaultDateType]
 }
 
-export function formatDate(d: Date, locale: ValidLocale = "en-US"): string {
-  return d.toLocaleDateString(locale, {
-    year: "numeric",
-    month: "short",
-    day: "2-digit",
-  })
+// yyyy.mm.dd 형식으로 포매팅
+function pad2(n: number): string {
+  return n.toString().padStart(2, "0")
+}
+
+export function formatDate(d: Date): string {
+  const year = d.getFullYear()
+  const month = pad2(d.getMonth() + 1)
+  const day = pad2(d.getDate())
+  return `${year}.${month}.${day}.`
 }
 
 export function Date({ date, locale }: Props) {
-  return <time datetime={date.toISOString()}>{formatDate(date, locale)}</time>
+  return <time dateTime={date.toISOString()}>{formatDate(date)}</time>
 }
