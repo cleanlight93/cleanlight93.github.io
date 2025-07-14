@@ -70,7 +70,7 @@ export const defaultContentPageLayout: PageLayout = {
     // 일반 노트용 기본 그래프
     Component.ConditionalRender({
       component: Component.Graph(
-        localGraph: { depth: 5 }, // 5단계까지
+        localGraph: { depth: 5 },
       }),
       condition: (page) => page.fileData.slug !== "index",
     }),
