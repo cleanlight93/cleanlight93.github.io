@@ -27,7 +27,7 @@ export function formatDate(d: Date): string {
   const year = d.getFullYear()
   const month = pad2(d.getMonth() + 1)
   const day = pad2(d.getDate())
-  return `${year}.${month}.${day}`
+  return `${year}.${month}.${day}.`
 }
 
 export function Date({ date, locale }: Props) {
