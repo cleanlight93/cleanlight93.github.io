@@ -34,5 +34,6 @@ $$
 
 ---
 1 [위키피디아](https://en.wikipedia.org/wiki/Day_count_convention)참고
+
 2 장외파생상품 청산업무규정 시행세칙 참고([거래소 법무포털 링크](https://rule.krx.co.kr/))
 
