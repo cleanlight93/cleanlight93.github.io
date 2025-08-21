@@ -1,7 +1,5 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
-import remarkMath from "remark-math"
-import rehypeKatex from "rehype-katex"
 
 /**
  * Quartz 4 Configuration
@@ -94,8 +92,6 @@ const config: QuartzConfig = {
       // Comment out CustomOgImages to speed up build time
       Plugin.CustomOgImages(),
     ],
-    remark: [remarkMath],
-    rehype: [rehypeKatex],
   },
 }
 
