@@ -98,19 +98,6 @@ export default (() => {
           }
         })}
        <meta name="google-site-verification" content="3-kKTgX1MmSzZ4eOJfxesJ93_f6-GdFTrDJMsZBM1nA" />
-
-       {/* MathJax CDN 설정 */}
-       <script dangerouslySetInnerHTML={{ __html: `
-         window.MathJax = {
-           tex: {
-             inlineMath: [['\\\$begin:math:text$','\\\\\\$end:math:text$']],
-             displayMath: [['$$','$$']],
-             processEscapes: true
-           }
-         };
-       `}} />
-       <script id="MathJax-script" async
-         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
       </head>
     )
   }
