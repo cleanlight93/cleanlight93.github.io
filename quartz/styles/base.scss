@@ -85,14 +85,6 @@ article mjx-container[jax="SVG"] svg {
   overflow: visible !important;
 }
 
-/* 전역에서 svg * { stroke: none } 같은 리셋이 있다면 선이 사라지므로 보완 */
-article mjx-container[jax="SVG"] svg [stroke-width] {
-  stroke: currentColor !important;
-  fill: none !important;
-  vector-effect: non-scaling-stroke !important;
-  shape-rendering: crispEdges;
-}
-
 strong {
   font-weight: $semiBoldWeight;
 }
