@@ -17,7 +17,9 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
           css: [
             {
               // base css
-              content: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css",
+              src: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css",
+              loadTime: "beforeDOMReady",
+              contentType: "external",
             },
           ],
           js: [
