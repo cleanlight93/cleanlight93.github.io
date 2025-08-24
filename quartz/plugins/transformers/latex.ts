@@ -1,5 +1,6 @@
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
+import rehypeMathjax from "rehype-mathjax/svg"
 // @ts-ignore
 import rehypeTypst from "@myriaddreamin/rehype-typst"
 import { QuartzTransformerPlugin } from "../types"
@@ -46,8 +47,7 @@ export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
           return [[rehypeTypst, opts?.typstOptions ?? {}]]
         case "mathjax":
         default:
-          // MathJax는 런타임에서 렌더링하므로 빌드 단계에서는 변환하지 않음
-          return []
+          return [[rehypeMathjax, {}]]
       }
     },
 
