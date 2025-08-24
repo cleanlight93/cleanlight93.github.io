@@ -42,7 +42,7 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
           ],
        }
     }
-    if (engine === "mathjax") {
+    if (engine === "mathjaxl") {
       return {
         css: [
             {
