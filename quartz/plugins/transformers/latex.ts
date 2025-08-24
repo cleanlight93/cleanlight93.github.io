@@ -22,7 +22,7 @@ interface MacroType {
 }
 
 export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
-  const engine = opts?.renderEngine ?? "katex"
+  const engine = opts?.renderEngine ?? "mathjax"
   const macros = opts?.customMacros ?? {}
   return {
     name: "Latex",
