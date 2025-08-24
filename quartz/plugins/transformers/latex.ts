@@ -11,9 +11,6 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
   const engine = opts?.renderEngine ?? "mathjax"
   return {
     name: "Latex",
-    markdownPlugins() {
-      return [remarkMath]
-    },
     htmlPlugins() {
       if (engine === "katex") {
         // if you need to pass options into a plugin, you
@@ -54,6 +51,9 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
           ],
         }
       }
+    },
+    markdownPlugins() {
+      return [remarkMath]
     },
   }
 }
