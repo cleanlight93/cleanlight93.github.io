@@ -11,6 +11,16 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
   const engine = opts?.renderEngine ?? "mathjax"
   return {
     name: "Latex",
+    markdownPlugins() {
+      return [remarkMath]
+    },
+    htmlPlugins() {
+      if (engine === "katex") {
+        return [[rehypeKatex, { output: "html" }]]
+      } else {
+        return [[rehypeMathjax, {}]] 
+      }
+    },
     externalResources() {
       if (engine === "katex") {
         return {
@@ -38,21 +48,11 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
             {
               /** MathJax v3 SVG 어댑터(옵션) – 사이트 크기 최적화 시 유용 */
               src: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js",
-              loadTime: "beforeDOMReady",
+              loadTime: "afterDOMReady",
               contentType: "external",
             },
           ],
         }
-      }
-    },
-    markdownPlugins() {
-      return [remarkMath]
-    },
-    htmlPlugins() {
-      if (engine === "katex") {
-        return [[rehypeKatex, { output: "html" }]]
-      } else {
-        return [[rehypeMathjax, {}]] 
       }
     },
   }
