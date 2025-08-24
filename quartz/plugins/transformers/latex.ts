@@ -43,7 +43,7 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
         }
       }
       if (engine === "mathjax") {
-      return {
+        return {
           js: [
             {
               /** MathJax v3 SVG 어댑터(옵션) – 사이트 크기 최적화 시 유용 */
