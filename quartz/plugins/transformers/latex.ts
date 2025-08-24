@@ -13,8 +13,7 @@ interface Options {
   renderEngine: "katex" | "mathjax" | "typst"
   customMacros: MacroType
   katexOptions: Omit<KatexOptions, "macros" | "output">
-  // tex은 내부에서 병합하므로 여기서는 제외
-  mathJaxOptions: Omit<MathjaxOptions, "tex">
+  mathJaxOptions: Omit<MathjaxOptions, "macros">
   typstOptions: TypstOptions
 }
 
@@ -25,25 +24,6 @@ interface MacroType {
 export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
   const engine = opts?.renderEngine ?? "katex"
   const macros = opts?.customMacros ?? {}
-
-  // MathJax 옵션 병합: \text 지원(textmacros 포함)
-  const buildMJ = (): MathjaxOptions => {
-    const user = (opts?.mathJaxOptions ?? {}) as any
-    const userTex = user.tex ?? {}
-    const packages = Array.from(
-      new Set([...(userTex.packages ?? []), "base", "ams", "newcommand", "textmacros"]),
-    )
-    return {
-      ...user,
-      tex: {
-        ...userTex,
-        packages,
-        macros: { ...(userTex.macros ?? {}), ...macros },
-      },
-      svg: { ...(user.svg ?? {}), fontCache: "none" },
-    } as MathJaxOptions
-  }
-
   return {
     name: "Latex",
     markdownPlugins() {
@@ -58,10 +38,11 @@ export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
           return [[rehypeTypst, opts?.typstOptions ?? {}]]
         }
         case "mathjax": {
-          return [[rehypeMathjax, buildMJ()]]
+          // 내부 파이프라인은 기존 그대로 유지
+          return [[rehypeMathjax, { macros, ...(opts?.mathJaxOptions ?? {}) }]]
         }
         default: {
-          return [[rehypeMathjax, buildMJ()]]
+          return [[rehypeMathjax, { macros, ...(opts?.mathJaxOptions ?? {}) }]]
         }
       }
     },
@@ -81,12 +62,67 @@ export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
           }
         case "mathjax":
           return {
+            // 처음 진입 시 회색 SVG를 방지하기 위한 최소 CSS 오버라이드
+            css: [
+              {
+                content: `
+                  svg[data-mml-node] { background: transparent !important; }
+                  svg[data-mml-node] path,
+                  svg[data-mml-node] rect,
+                  svg[data-mml-node] circle,
+                  svg[data-mml-node] polygon,
+                  svg[data-mml-node] polyline,
+                  svg[data-mml-node] line {
+                    fill: currentColor !important;
+                    stroke: currentColor !important;
+                  }
+                `,
+              },
+            ],
             js: [
               {
-                // MathJax v3 TeX → SVG 
+                // MathJax v3 전역 설정: 내부 렌더와 충돌 피하려고 자동 typeset 비활성화
+                content: `
+                  window.MathJax = {
+                    startup: { typeset: false },
+                    tex: {
+                      inlineMath: [['\\\$begin:math:text$','\\\\\\$end:math:text$']],
+                      displayMath: [['$$','$$']],
+                      packages: {'[+]': ['base','ams','newcommand','textmacros']},
+                      macros: ${JSON.stringify(macros)}
+                    },
+                    svg: { fontCache: 'none' }
+                  };
+                `,
+                loadTime: "beforeDOMReady",
+                contentType: "inline",
+              },
+              {
+                // 외부 MathJax TeX→SVG 로더
                 src: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js",
                 loadTime: "afterDOMReady",
                 contentType: "external",
+              },
+              {
+                // 첫 진입 시 즉시 재도색/재배치가 되도록 보장 (새로고침 없이)
+                content: `
+                  (function () {
+                    function onceReady(fn) {
+                      if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', fn, { once: true });
+                      } else {
+                        fn();
+                      }
+                    }
+                    onceReady(function () {
+                      if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+                        MathJax.typesetPromise().catch(function(){});
+                      }
+                    });
+                  })();
+                `,
+                loadTime: "afterDOMReady",
+                contentType: "inline",
               },
             ],
           }
