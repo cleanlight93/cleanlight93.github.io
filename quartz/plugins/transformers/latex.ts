@@ -1,16 +1,11 @@
 // quartz/plugins/transformers/latex.ts
-import remarkMath from "remark-math"
+import { QuartzTransformerPlugin } from "../types"
 import rehypeKatex from "rehype-katex"
 // @ts-ignore
 import rehypeTypst from "@myriaddreamin/rehype-typst"
-// @ts-ignore
-import rehypeMathjax from "rehype-mathjax/svg"
-import { QuartzTransformerPlugin } from "../types"
 import { KatexOptions } from "katex"
 // @ts-ignore
 import { Options as TypstOptions } from "@myriaddreamin/rehype-typst"
-// 언래퍼 구현용
-import { visit } from "unist-util-visit"
 
 interface Options {
   renderEngine: "katex" | "mathjax" | "typst"
@@ -23,47 +18,19 @@ interface MacroType {
   [key: string]: string
 }
 
-// 코드블록(pre > code) 안에 갇힌 $$ … $$ 수식을 감지해 일반 블록으로 풀어주는 rehype 플러그인
-function unwrapCodeMath() {
-  return (tree: any) => {
-    visit(tree, "element", (node: any, index: number | null, parent: any) => {
-      if (!parent || index == null) return
-      if (node.tagName !== "pre") return
-      if (!node.children || node.children.length !== 1) return
-      const code = node.children[0]
-      if (!code || code.tagName !== "code") return
-      const child = code.children && code.children[0]
-      if (!child || child.type !== "text") return
-      const txt: string = String(child.value || "")
-      // 코드블록 전체가 하나의 $$ … $$ 블록인 경우만 언래핑
-      const m = txt.match(/^\s*\$\$([\s\S]*?)\$\$\s*$/)
-      if (!m) return
-      const body = m[1]
-      const replacement = {
-        type: "element",
-        tagName: "div",
-        properties: { className: ["mathjax-block"] },
-        children: [{ type: "text", value: "$$\n" + body + "\n$$" }],
-      }
-      parent.children.splice(index, 1, replacement)
-    })
-  }
-}
-
 export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
-  // 기본값: MathJax
   const engine = opts?.renderEngine ?? "mathjax"
   const macros = opts?.customMacros ?? {}
 
   return {
     name: "Latex",
 
-    // $ / $$ 파싱
+    // 설치 없이 런타임 MathJax 스캔을 쓰기 위해 markdown 단계에서는 아무 것도 하지 않음
     markdownPlugins() {
-      return [[remarkMath, { singleDollar: true }]]
+      return []
     },
 
-    // HTML 변환: MathJax는 빌드 타임에 SVG로 렌더링
+    // KaTeX/Typst만 빌드 변환, MathJax는 런타임 렌더링
     htmlPlugins() {
       switch (engine) {
         case "katex":
@@ -72,25 +39,10 @@ export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
           return [[rehypeTypst, opts?.typstOptions ?? {}]]
         case "mathjax":
         default:
-          // 1) 코드블록에 갇힌 $$ … $$를 먼저 평범한 블록으로 언래핑
-          // 2) 이어서 rehype-mathjax/svg로 서버사이드 렌더링
-          return [
-            [unwrapCodeMath, {}],
-            [
-              rehypeMathjax,
-              {
-                tex: {
-                  packages: { "[+]": ["base", "ams", "newcommand", "textmacros"] },
-                  macros,
-                },
-                svg: { fontCache: "none" },
-              },
-            ],
-          ]
+          return []
       }
     },
 
-    // MathJax는 SSR이므로 클라이언트 JS 주입 불필요
     externalResources() {
       if (engine === "katex") {
         return {
@@ -104,8 +56,106 @@ export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
           ],
         }
       }
-      // mathjax/typst는 주입 리소스 없음
-      return
+
+      if (engine === "mathjax") {
+        const configInline = `
+          window.MathJax = {
+            tex: {
+              inlineMath: [['$', '$'], ['\\\$begin:math:text$', '\\\\\\$end:math:text$']],
+              displayMath: [['$$', '$$'], ['\\\$begin:math:display$', '\\\\\\$end:math:display$']],
+              processEscapes: true,
+              packages: { '[+]': ['base','ams','newcommand','textmacros'] },
+              macros: ${JSON.stringify(macros)}
+            },
+            options: { skipHtmlTags: ['script','noscript','style','textarea'] },
+            svg: { fontCache: 'none' },
+            startup: { typeset: false }
+          };
+        `
+
+        const runnerInline = `
+          (function () {
+            function unwrapCodeBlockMath(root) {
+              var pres = (root || document).querySelectorAll('pre');
+              for (var i = 0; i < pres.length; i++) {
+                var pre = pres[i];
+                if (!pre.firstElementChild || pre.firstElementChild.tagName !== 'CODE') continue;
+                var code = pre.firstElementChild;
+                var txt = code.textContent || '';
+                var m = txt.match(/^\\s*\\$\\$([\\s\\S]*?)\\$\\$\\s*$/);
+                if (!m) continue;
+                var div = document.createElement('div');
+                div.className = 'mathjax-block';
+                div.textContent = '$$\\n' + m[1] + '\\n$$';
+                pre.replaceWith(div);
+              }
+            }
+
+            function typesetNow(root) {
+              if (!window.MathJax || !window.MathJax.typesetPromise) return;
+              unwrapCodeBlockMath(root || document);
+              return window.MathJax.typesetPromise(root ? [root] : undefined).catch(function (e) {
+                try { console.warn('[MathJax] typeset error:', e); } catch (_) {}
+              });
+            }
+
+            function bootAfterMJ() {
+              typesetNow(document);
+              var target = document.querySelector('main') || document.body;
+              try {
+                var mo = new MutationObserver(function (muts) {
+                  for (var i = 0; i < muts.length; i++) {
+                    if (muts[i].addedNodes && muts[i].addedNodes.length) {
+                      typesetNow(document);
+                      break;
+                    }
+                  }
+                });
+                mo.observe(target, { childList: true, subtree: true });
+              } catch (_) {
+                document.addEventListener('quartz:navigation', function () { typesetNow(document); });
+              }
+              window.addEventListener('hashchange', function () { typesetNow(document); });
+              document.addEventListener('visibilitychange', function () { if (!document.hidden) typesetNow(document); });
+            }
+
+            function start() {
+              if (window.MathJax && window.MathJax.startup && window.MathJax.startup.promise) {
+                window.MathJax.startup.promise.then(bootAfterMJ);
+              } else {
+                // 로더가 startup을 노출하지 않는 드문 케이스 폴백
+                setTimeout(bootAfterMJ, 0);
+              }
+            }
+
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', start);
+            } else {
+              start();
+            }
+          })();
+        `
+
+        return {
+          js: [
+            {
+              content: configInline,
+              loadTime: "beforeDOMReady",
+              contentType: "inline",
+            },
+            {
+              src: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js",
+              loadTime: "afterDOMReady",
+              contentType: "external",
+            },
+            {
+              content: runnerInline,
+              loadTime: "afterDOMReady",
+              contentType: "inline",
+            },
+          ],
+        }
+      }
     },
   }
 }
