@@ -41,17 +41,18 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
             },
           ],
         }
-          case "mathjax":
-          return {
-            js: [
-              {
-                /** MathJax v3 SVG 어댑터(옵션) – 사이트 크기 최적화 시 유용 */
-                src: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js",
-                loadTime: "beforeDOMReady",
-                contentType: "external",
-              },
-            ],
-          }
+      }
+      if (engine === "mathjax") {
+      return {
+          js: [
+            {
+              /** MathJax v3 SVG 어댑터(옵션) – 사이트 크기 최적화 시 유용 */
+              src: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js",
+              loadTime: "beforeDOMReady",
+              contentType: "external",
+            },
+          ],
+        }
       }
     },
   }
