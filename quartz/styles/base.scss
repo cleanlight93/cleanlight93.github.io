@@ -79,58 +79,40 @@ article {
   }
 }
 
-/* MathJax SVG에 덮어씌워진 전역 SVG 리셋을 무효화 */
-article mjx-container.MathJax svg {
+/* === MathJax SVG 예외 : base.scss 맨 끝에 배치 === */
+article mjx-container[jax="SVG"] svg {
   background: transparent !important;
   overflow: visible !important;
-  box-shadow: none !important;
-  border: 0 !important;
+  color: inherit !important; /* currentColor 안정화 */
 }
 
-/* 글리프(path/use)는 채움으로, 표의 선(line/rect/… )은 테두리로 보이도록 복원 */
-article mjx-container.MathJax svg path,
-article mjx-container.MathJax svg use {
+/* 글리프(문자)는 채움만 지정: stroke는 건드리지 않음 */
+article mjx-container[jax="SVG"] svg path,
+article mjx-container[jax="SVG"] svg use {
   fill: currentColor !important;
-  stroke: none !important;
 }
 
-article mjx-container.MathJax svg line,
-article mjx-container.MathJax svg polyline,
-article mjx-container.MathJax svg polygon,
-article mjx-container.MathJax svg rect {
-  fill: none !important;
-}
-
-/* 폭이 넓은 수식이 잘리지 않게 안전장치 */
-article mjx-container.MathJax { overflow-x: auto; overflow-y: hidden; }
-
-/* MathJax SVG: 배경과 클리핑 안정화 */
-article mjx-container.MathJax svg {
-  background: transparent !important;
-  overflow: visible !important;
-  color: inherit !important;
-}
-
-/* 글리프(문자) 채움: stroke는 건드리지 않습니다 */
-article mjx-container.MathJax svg path,
-article mjx-container.MathJax svg use {
-  fill: currentColor !important;
-  /* stroke 관련 선언 금지 */
-}
-
-/* '선'으로 쓰이는 도형만 정확히 복원: 초기 렌더에서도 선이 바로 보이도록 강제 */
-article mjx-container.MathJax svg [stroke-width] {
+/* 표 격자/테두리: '선'으로 쓰이는 요소만 정확히 복원 */
+article mjx-container[jax="SVG"] svg [stroke-width],
+article mjx-container[jax="SVG"] svg line,
+article mjx-container[jax="SVG"] svg rect,
+article mjx-container[jax="SVG"] svg polyline,
+article mjx-container[jax="SVG"] svg polygon,
+article mjx-container[jax="SVG"] svg path[stroke] {
   stroke: currentColor !important;
   fill: none !important;
+  /* 초기 렌더에서 0으로 죽는 경우 대비 */
+  stroke-width: 1px !important;
   vector-effect: non-scaling-stroke !important;
   shape-rendering: crispEdges;
 }
 
-/* 혹시 전역에서 svg * { stroke: none } 같은 리셋을 쓴 경우 예외 처리(권장) */
-:where(article) :not(mjx-container) > svg,
-:where(article) :not(mjx-container) > svg * {
-  /* 여기에 전역 SVG 스타일을 두었다면 MathJax 영역은 선택자에서 제외하세요 */
+/* 폭 넓은 수식 스크롤 안전장치 */
+article mjx-container[jax="SVG"] {
+  overflow-x: auto;
+  overflow-y: hidden;
 }
+
 strong {
   font-weight: $semiBoldWeight;
 }
