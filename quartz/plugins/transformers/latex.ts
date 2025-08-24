@@ -26,7 +26,7 @@ export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
   const engine = opts?.renderEngine ?? "katex"
   const macros = opts?.customMacros ?? {}
 
-  // MathJax 옵션 병합: \text 지원(textmacros 포함) + 회색박스 회피(fontCache:none)
+  // MathJax 옵션 병합: \text 지원(textmacros 포함)
   const buildMJ = (): MathjaxOptions => {
     const user = (opts?.mathJaxOptions ?? {}) as any
     const userTex = user.tex ?? {}
