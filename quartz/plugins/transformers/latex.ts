@@ -42,7 +42,7 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
           ],
        }
     }
-    if (engine === "mathjaxl") {
+    if (engine === "mathjax-chtml" && opts?.chtmlExternalCSS) {
       return {
         css: [
             {
