@@ -79,38 +79,45 @@ article {
   }
 }
 
-/* === MathJax SVG 예외 : base.scss 맨 끝에 배치 === */
-article mjx-container[jax="SVG"] svg {
+/* 1) 컨테이너·기본값 안정화 */
+html body article mjx-container.MathJax {
+  color: inherit !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+html body article mjx-container.MathJax svg {
   background: transparent !important;
   overflow: visible !important;
-  color: inherit !important; /* currentColor 안정화 */
 }
 
-/* 글리프(문자)는 채움만 지정: stroke는 건드리지 않음 */
-article mjx-container[jax="SVG"] svg path,
-article mjx-container[jax="SVG"] svg use {
+/* 2) 글리프(문자) — 채움만 지정. stroke는 건드리지 않음 */
+html body article mjx-container.MathJax svg path,
+html body article mjx-container.MathJax svg use {
   fill: currentColor !important;
 }
 
-/* 표 격자/테두리: '선'으로 쓰이는 요소만 정확히 복원 */
-article mjx-container[jax="SVG"] svg [stroke-width],
-article mjx-container[jax="SVG"] svg line,
-article mjx-container[jax="SVG"] svg rect,
-article mjx-container[jax="SVG"] svg polyline,
-article mjx-container[jax="SVG"] svg polygon,
-article mjx-container[jax="SVG"] svg path[stroke] {
+/* 3) 표의 격자/테두리 — 선으로 쓰이는 요소만 정확히 복원
+      (그룹에 stroke/width가 달린 경우까지 커버) */
+html body article mjx-container.MathJax svg line,
+html body article mjx-container.MathJax svg rect,
+html body article mjx-container.MathJax svg polyline,
+html body article mjx-container.MathJax svg polygon,
+html body article mjx-container.MathJax svg path[stroke],
+html body article mjx-container.MathJax svg g[stroke] > *,
+html body article mjx-container.MathJax svg g[stroke-width] > * {
   stroke: currentColor !important;
+  stroke-width: inherit !important;
   fill: none !important;
-  /* 초기 렌더에서 0으로 죽는 경우 대비 */
-  stroke-width: 1px !important;
   vector-effect: non-scaling-stroke !important;
   shape-rendering: crispEdges;
 }
 
-/* 폭 넓은 수식 스크롤 안전장치 */
-article mjx-container[jax="SVG"] {
-  overflow-x: auto;
-  overflow-y: hidden;
+/* 4) 아주 공격적인 전역 리셋을 무력화해야 하는 경우(선택)
+   예: 전역에 svg * { stroke: none !important; }가 있을 때 */
+html body article mjx-container.MathJax svg *[style*="stroke"],
+html body article mjx-container.MathJax svg *[stroke],
+html body article mjx-container.MathJax svg *[stroke-width] {
+  stroke: currentColor !important;
 }
 
 strong {
