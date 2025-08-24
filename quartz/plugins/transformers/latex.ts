@@ -1,6 +1,6 @@
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
-import rehypeMathjax from "rehype-mathjax/svg"
+import rehypeMathjax from "rehype-mathjax/chtml"
 import { QuartzTransformerPlugin } from "../types"
 
 interface Options {
