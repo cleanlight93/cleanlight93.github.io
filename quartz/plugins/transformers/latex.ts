@@ -1,72 +1,62 @@
-// quartz/plugins/transformers/latex.ts
-import { QuartzTransformerPlugin } from "../types"
+import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
-// @ts-ignore
+import rehypeMathjax from "rehype-mathjax/svg"
+//@ts-ignore
 import rehypeTypst from "@myriaddreamin/rehype-typst"
+import { QuartzTransformerPlugin } from "../types"
 import { KatexOptions } from "katex"
-// @ts-ignore
+import { Options as MathjaxOptions } from "rehype-mathjax/svg"
+//@ts-ignore
 import { Options as TypstOptions } from "@myriaddreamin/rehype-typst"
-
 interface Options {
   renderEngine: "katex" | "mathjax" | "typst"
-  customMacros: { [key: string]: string }
+  customMacros: MacroType
   katexOptions: Omit<KatexOptions, "macros" | "output">
+  mathJaxOptions: Omit<MathjaxOptions, "macros">
   typstOptions: TypstOptions
 }
-
+interface MacroType {
+  [key: string]: string
+}
 export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
-  const engine = opts?.renderEngine ?? "mathjax"
+  const engine = opts?.renderEngine ?? "katex"
   const macros = opts?.customMacros ?? {}
-
   return {
     name: "Latex",
-
-    // 설치 없이 MathJax 런타임 스캔을 쓰기 위해 Markdown 단계는 건드리지 않습니다.
     markdownPlugins() {
-      return []
+      return [remarkMath]
     },
-
-    // MathJax는 런타임 렌더링. KaTeX/Typst만 빌드 타임 변환을 유지합니다.
     htmlPlugins() {
       switch (engine) {
-        case "katex":
+        case "katex": {
           return [[rehypeKatex, { output: "html", macros, ...(opts?.katexOptions ?? {}) }]]
-        case "typst":
+        }
+        case "typst": {
           return [[rehypeTypst, opts?.typstOptions ?? {}]]
-        case "mathjax":
-        default:
-          return []
+        }
+        case "mathjax": {
+          return [[rehypeMathjax, { macros, ...(opts?.mathJaxOptions ?? {}) }]]
+        }
+        default: {
+          return [[rehypeMathjax, { macros, ...(opts?.mathJaxOptions ?? {}) }]]
+        }
       }
     },
-
-    // 인라인 스크립트 없이 MathJax를 가장 먼저 로드해 초기 진입에서 자동 typeset이 실행되도록 합니다.
     externalResources() {
-      if (engine === "katex") {
-        return {
-          css: [{ content: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" }],
-          js: [
-            {
-              src: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js",
-              loadTime: "afterDOMReady",
-              contentType: "external",
-            },
-          ],
-        }
-      }
-
-      if (engine === "mathjax") {
-        return {
-          js: [
-            {
-              // MathJax v3 기본 config(TeX + SVG)는 $/$$ 구분자를 기본 지원하며
-              // 자동으로 DOM을 스캔해 첫 로드 시 typeset합니다.
-              src: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js",
-              loadTime: "beforeDOMReady",
-              contentType: "external",
-            },
-          ],
-        }
+      switch (engine) {
+        case "katex":
+          return {
+            css: [{ content: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" }],
+            js: [
+              {
+                // fix copy behaviour: https://github.com/KaTeX/KaTeX/blob/main/contrib/copy-tex/README.md
+                src: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js",
+                loadTime: "afterDOMReady",
+                contentType: "external",
+              },
+            ],
+          }
       }
     },
   }
-}
+
