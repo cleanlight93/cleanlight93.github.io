@@ -11,15 +11,6 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
   const engine = opts?.renderEngine ?? "mathjax"
   return {
     name: "Latex",
-    htmlPlugins() {
-      if (engine === "katex") {
-        // if you need to pass options into a plugin, you
-        // can use a tuple of [plugin, options]
-        return [[rehypeKatex, { output: "html" }]]
-      } else {
-        return [rehypeMathjax]
-      }
-    },
     externalResources() {
       if (engine === "katex") {
         return {
@@ -54,6 +45,13 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
     },
     markdownPlugins() {
       return [remarkMath]
+    },
+    htmlPlugins() {
+      if (engine === "katex") {
+        return [[rehypeKatex, { output: "html" }]]
+      } else {
+        return [rehypeMathjax]
+      }
     },
   }
 }
