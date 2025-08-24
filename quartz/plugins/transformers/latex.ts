@@ -1,6 +1,6 @@
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
-import rehypeMathjax from "rehype-mathjax/cthml"
+import rehypeMathjax from "rehype-mathjax/svg"
 import { QuartzTransformerPlugin } from "../types"
 
 interface Options {
@@ -37,18 +37,6 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
               // fix copy behaviour: https://github.com/KaTeX/KaTeX/blob/main/contrib/copy-tex/README.md
               src: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js",
               loadTime: "afterDOMReady",
-              contentType: "external",
-            },
-          ],
-       }
-    }
-    if (engine === "mathjax-chtml" && opts?.chtmlExternalCSS) {
-      return {
-        css: [
-            {
-              // CHTML 출력 전용 폰트/스타일 시트(인라인 스타일이 CSP로 막힐 때 사용)
-              src: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/tex.css",
-              loadTime: "beforeDOMReady",
               contentType: "external",
             },
           ],
