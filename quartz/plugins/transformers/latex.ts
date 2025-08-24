@@ -5,16 +5,15 @@ import rehypeMathjax from "rehype-mathjax/svg"
 import rehypeTypst from "@myriaddreamin/rehype-typst"
 import { QuartzTransformerPlugin } from "../types"
 import { KatexOptions } from "katex"
-import type { Options as MathjaxOptions } from "rehype-mathjax/svg"
+import { Options as MathjaxOptions } from "rehype-mathjax/svg"
 //@ts-ignore
-import type { Options as TypstOptions } from "@myriaddreamin/rehype-typst"
+import { Options as TypstOptions } from "@myriaddreamin/rehype-typst"
 
 interface Options {
   renderEngine: "katex" | "mathjax" | "typst"
   customMacros: MacroType
   katexOptions: Omit<KatexOptions, "macros" | "output">
-  // tex은 내부에서 병합하므로 제외
-  mathJaxOptions: Omit<MathjaxOptions, "tex">
+  mathJaxOptions: Omit<MathjaxOptions, "macros">
   typstOptions: TypstOptions
 }
 
@@ -23,30 +22,8 @@ interface MacroType {
 }
 
 export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
-  const engine = opts?.renderEngine ?? "mathjax"
-  const userMacros = opts?.customMacros ?? {}
-
-  const buildMathJaxSvgOptions = (): MathjaxOptions => {
-    const user = (opts?.mathJaxOptions ?? {}) as any
-    const userTex = user.tex ?? {}
-    const mergedPackages = Array.from(
-      new Set([...(userTex.packages ?? []), "base", "ams", "newcommand", "textmacros"]),
-    )
-    return {
-      ...user,
-      tex: {
-        ...userTex,
-        packages: mergedPackages,
-        macros: { ...(userTex.macros ?? {}), ...userMacros },
-      },
-      // 핵심: <defs>/<use> 없이 각 글리프를 직접 path로 출력
-      svg: {
-        ...(user.svg ?? {}),
-        fontCache: "none",
-      },
-    } as MathjaxOptions
-  }
-
+  const engine = opts?.renderEngine ?? "katex"
+  const macros = opts?.customMacros ?? {}
   return {
     name: "Latex",
     markdownPlugins() {
@@ -54,27 +31,67 @@ export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
     },
     htmlPlugins() {
       switch (engine) {
-        case "katex":
-          return [[rehypeKatex, { output: "html", macros: userMacros, ...(opts?.katexOptions ?? {}) }]]
-        case "typst":
+        case "katex": {
+          return [[rehypeKatex, { output: "html", macros, ...(opts?.katexOptions ?? {}) }]]
+        }
+        case "typst": {
           return [[rehypeTypst, opts?.typstOptions ?? {}]]
-        case "mathjax":
-        default:
-          return [[rehypeMathjax, buildMathJaxSvgOptions()]]
+        }
+        case "mathjax": 
+        default: 
+          return  []
       }
     },
     externalResources() {
-      if (engine === "katex") {
-        return {
-          css: [{ content: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" }],
-          js: [
-            {
-              src: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js",
-              loadTime: "afterDOMReady",
-              contentType: "external",
-            },
-          ],
-        }
+      switch (engine) {
+        case "katex":
+          return {
+            css: [{ content: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" }],
+            js: [
+              {
+                // fix copy behaviour: https://github.com/KaTeX/KaTeX/blob/main/contrib/copy-tex/README.md
+                src: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js",
+                loadTime: "afterDOMReady",
+                contentType: "external",
+              },
+            ],
+          }
+        case "mathjax":
+          return {
+            // MathJax v3 설정을 먼저 주입(인라인)
+            js: [
+              {
+                content: `
+                  window.MathJax = {
+                    tex: {
+                      // \$begin:math:text$ \\$end:math:text$ / $$ $$ 지원 + \\text 등 보장
+                      inlineMath: [['\\\$begin:math:text$','\\\\\\$end:math:text$']],
+                      displayMath: [['$$','$$']],
+                      packages: {'[+]': ['base','ams','newcommand','textmacros']},
+                      macros: ${JSON.stringify(macros)}
+                    },
+                    svg: {
+                      // 깃헙 페이지/정화 이슈 회피용
+                      fontCache: 'none'
+                    },
+                    options: {
+                      renderActions: {
+                        addMenu: []
+                      }
+                    }
+                  };
+                `,
+                loadTime: "beforeDOMReady",
+                contentType: "inline",
+              },
+              {
+                // 외부 MathJax: TeX → SVG 렌더러
+                src: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js",
+                loadTime: "afterDOMReady",
+                contentType: "external",
+              },
+            ],
+          }
       }
     },
   }
