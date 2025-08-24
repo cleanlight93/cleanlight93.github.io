@@ -79,12 +79,6 @@ article {
   }
 }
 
-/* MathJax SVG가 전역 리셋에 먹히지 않도록 최소 보호 */
-article mjx-container[jax="SVG"] svg {
-  background: transparent !important;
-  overflow: visible !important;
-}
-
 strong {
   font-weight: $semiBoldWeight;
 }
