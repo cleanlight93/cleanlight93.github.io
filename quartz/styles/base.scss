@@ -79,6 +79,32 @@ article {
   }
 }
 
+/* MathJax SVG에 덮어씌워진 전역 SVG 리셋을 무효화 */
+article mjx-container.MathJax svg {
+  background: transparent !important;
+  overflow: visible !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+/* 글리프(path/use)는 채움으로, 표의 선(line/rect/… )은 테두리로 보이도록 복원 */
+article mjx-container.MathJax svg path,
+article mjx-container.MathJax svg use {
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
+article mjx-container.MathJax svg line,
+article mjx-container.MathJax svg polyline,
+article mjx-container.MathJax svg polygon,
+article mjx-container.MathJax svg rect {
+  fill: none !important;
+  stroke: currentColor !important;
+}
+
+/* 폭이 넓은 수식이 잘리지 않게 안전장치 */
+article mjx-container.MathJax { overflow-x: auto; overflow-y: hidden; }
+
 strong {
   font-weight: $semiBoldWeight;
 }
