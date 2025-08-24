@@ -105,6 +105,32 @@ article mjx-container.MathJax svg rect {
 /* 폭이 넓은 수식이 잘리지 않게 안전장치 */
 article mjx-container.MathJax { overflow-x: auto; overflow-y: hidden; }
 
+/* MathJax SVG 보호: 초기 페인트에서 선/배경이 깨지는 문제 방지 */
+article mjx-container.MathJax svg {
+  background: transparent !important;
+  overflow: visible !important;
+  color: inherit !important; /* currentColor 해석을 안정화 */
+}
+
+/* 글리프(path/use)는 채움으로 표시 */
+article mjx-container.MathJax svg path,
+article mjx-container.MathJax svg use {
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
+/* 표의 선(line/rect/polyline/polygon)은 스트로크로 표시 */
+article mjx-container.MathJax svg line,
+article mjx-container.MathJax svg rect,
+article mjx-container.MathJax svg polyline,
+article mjx-container.MathJax svg polygon {
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1px !important;             /* 초기 굵기 강제 */
+  vector-effect: non-scaling-stroke !important; /* 스케일링 시 굵기 유실 방지 */
+  shape-rendering: crispEdges;               /* 얇은 선 선명도 개선 */
+}
+
 strong {
   font-weight: $semiBoldWeight;
 }
