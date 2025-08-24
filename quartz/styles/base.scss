@@ -79,6 +79,18 @@ article {
   }
 }
 
+/* MathJax SVG에서 \hline 등 가로선이 사라지는 증상 복구 */
+svg.mjx-svg .mjx-solid { 
+  stroke: currentColor !important;
+  stroke-width: .07em !important;   /* 굵기는 취향에 따라 .06~.1em 범위에서 조정 */
+  shape-rendering: geometricPrecision;
+}
+
+/* 혹시 전역에서 svg * { stroke: none } 같은 규칙을 쓰고 있다면, MathJax 영역만 예외 처리 */
+svg.mjx-svg *[stroke] { 
+  stroke: currentColor !important; 
+}
+
 strong {
   font-weight: $semiBoldWeight;
 }
