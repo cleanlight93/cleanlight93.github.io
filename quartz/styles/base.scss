@@ -105,32 +105,33 @@ article mjx-container.MathJax svg rect {
 /* 폭이 넓은 수식이 잘리지 않게 안전장치 */
 article mjx-container.MathJax { overflow-x: auto; overflow-y: hidden; }
 
-/* MathJax SVG 보호: 초기 페인트에서 선/배경이 깨지는 문제 방지 */
+/* MathJax SVG: 배경과 클리핑 안정화 */
 article mjx-container.MathJax svg {
   background: transparent !important;
   overflow: visible !important;
-  color: inherit !important; /* currentColor 해석을 안정화 */
+  color: inherit !important;
 }
 
-/* 글리프(path/use)는 채움으로 표시 */
+/* 글리프(문자) 채움: stroke는 건드리지 않습니다 */
 article mjx-container.MathJax svg path,
 article mjx-container.MathJax svg use {
   fill: currentColor !important;
-  stroke: none !important;
+  /* stroke 관련 선언 금지 */
 }
 
-/* 표의 선(line/rect/polyline/polygon)은 스트로크로 표시 */
-article mjx-container.MathJax svg line,
-article mjx-container.MathJax svg rect,
-article mjx-container.MathJax svg polyline,
-article mjx-container.MathJax svg polygon {
-  fill: none !important;
+/* '선'으로 쓰이는 도형만 정확히 복원: 초기 렌더에서도 선이 바로 보이도록 강제 */
+article mjx-container.MathJax svg [stroke-width] {
   stroke: currentColor !important;
-  stroke-width: 1px !important;             /* 초기 굵기 강제 */
-  vector-effect: non-scaling-stroke !important; /* 스케일링 시 굵기 유실 방지 */
-  shape-rendering: crispEdges;               /* 얇은 선 선명도 개선 */
+  fill: none !important;
+  vector-effect: non-scaling-stroke !important;
+  shape-rendering: crispEdges;
 }
 
+/* 혹시 전역에서 svg * { stroke: none } 같은 리셋을 쓴 경우 예외 처리(권장) */
+:where(article) :not(mjx-container) > svg,
+:where(article) :not(mjx-container) > svg * {
+  /* 여기에 전역 SVG 스타일을 두었다면 MathJax 영역은 선택자에서 제외하세요 */
+}
 strong {
   font-weight: $semiBoldWeight;
 }
