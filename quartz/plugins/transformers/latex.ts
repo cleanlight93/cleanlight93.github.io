@@ -8,6 +8,7 @@ import { KatexOptions } from "katex"
 import { Options as MathjaxOptions } from "rehype-mathjax/svg"
 //@ts-ignore
 import { Options as TypstOptions } from "@myriaddreamin/rehype-typst"
+
 interface Options {
   renderEngine: "katex" | "mathjax" | "typst"
   customMacros: MacroType
@@ -15,12 +16,15 @@ interface Options {
   mathJaxOptions: Omit<MathjaxOptions, "macros">
   typstOptions: TypstOptions
 }
+
 interface MacroType {
   [key: string]: string
 }
+
 export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
   const engine = opts?.renderEngine ?? "katex"
   const macros = opts?.customMacros ?? {}
+
   return {
     name: "Latex",
     markdownPlugins() {
@@ -42,6 +46,7 @@ export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
         }
       }
     },
+
     externalResources() {
       switch (engine) {
         case "katex":
@@ -59,4 +64,3 @@ export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
       }
     },
   }
-
