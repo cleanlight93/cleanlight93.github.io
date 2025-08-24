@@ -13,7 +13,8 @@ interface Options {
   renderEngine: "katex" | "mathjax" | "typst"
   customMacros: MacroType
   katexOptions: Omit<KatexOptions, "macros" | "output">
-  mathJaxOptions: Omit<MathjaxOptions, "macros">
+  // tex은 내부에서 병합하므로 여기서는 제외
+  mathJaxOptions: Omit<MathjaxOptions, "tex">
   typstOptions: TypstOptions
 }
 
@@ -24,6 +25,25 @@ interface MacroType {
 export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
   const engine = opts?.renderEngine ?? "katex"
   const macros = opts?.customMacros ?? {}
+
+  // MathJax 옵션 병합: \text 지원(textmacros 포함) + 회색박스 회피(fontCache:none)
+  const buildMJ = (): MathjaxOptions => {
+    const user = (opts?.mathJaxOptions ?? {}) as any
+    const userTex = user.tex ?? {}
+    const packages = Array.from(
+      new Set([...(userTex.packages ?? []), "base", "ams", "newcommand", "textmacros"]),
+    )
+    return {
+      ...user,
+      tex: {
+        ...userTex,
+        packages,
+        macros: { ...(userTex.macros ?? {}), ...macros },
+      },
+      svg: { ...(user.svg ?? {}), fontCache: "none" },
+    } as MathJaxOptions
+  }
+
   return {
     name: "Latex",
     markdownPlugins() {
@@ -37,9 +57,12 @@ export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
         case "typst": {
           return [[rehypeTypst, opts?.typstOptions ?? {}]]
         }
-        case "mathjax": 
-        default: 
-          return  []
+        case "mathjax": {
+          return [[rehypeMathjax, buildMJ()]]
+        }
+        default: {
+          return [[rehypeMathjax, buildMJ()]]
+        }
       }
     },
     externalResources() {
@@ -58,34 +81,9 @@ export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
           }
         case "mathjax":
           return {
-            // MathJax v3 설정을 먼저 주입(인라인)
             js: [
               {
-                content: `
-                  window.MathJax = {
-                    tex: {
-                      // \$begin:math:text$ \\$end:math:text$ / $$ $$ 지원 + \\text 등 보장
-                      inlineMath: [['\\\$begin:math:text$','\\\\\\$end:math:text$']],
-                      displayMath: [['$$','$$']],
-                      packages: {'[+]': ['base','ams','newcommand','textmacros']},
-                      macros: ${JSON.stringify(macros)}
-                    },
-                    svg: {
-                      // 깃헙 페이지/정화 이슈 회피용
-                      fontCache: 'none'
-                    },
-                    options: {
-                      renderActions: {
-                        addMenu: []
-                      }
-                    }
-                  };
-                `,
-                loadTime: "beforeDOMReady",
-                contentType: "inline",
-              },
-              {
-                // 외부 MathJax: TeX → SVG 렌더러
+                // MathJax v3 TeX → SVG 
                 src: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js",
                 loadTime: "afterDOMReady",
                 contentType: "external",
