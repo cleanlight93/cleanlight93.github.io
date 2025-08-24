@@ -18,7 +18,7 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
       if (engine === "katex") {
         return [[rehypeKatex, { output: "html" }]]
       } else {
-        return [[rehypeMathjax, {}]] 
+        return [[rehypeMathjax, { fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts" }]] 
       }
     },
     externalResources() {
