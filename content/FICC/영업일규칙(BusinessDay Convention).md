@@ -5,6 +5,8 @@ tags:
   - FICC
   - FX
   - 금융
+  - 날짜
+  - 일수계산
 description: 영업일규칙(BusinessDay Convention)
 ---
 **영업일 규칙**

@@ -5,6 +5,8 @@ tags:
   - 금융
   - FICC
   - FX
+  - 날짜
+  - 일수계산
 description: 일수계산방식(Day Count Convention)
 ---
 기본적으로 이자계산기간의 실제일수는 초일 산입, 말일 불산입으로 계산
