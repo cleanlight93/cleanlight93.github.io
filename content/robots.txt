@@ -1,19 +1,12 @@
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
 User-agent: *
 Allow: /
  
-# Sitemap location
-sitemap: https://cleanlight93.github.io/sitemap.xml
+Sitemap: https://cleanlight93.github.io/sitemap.xml
  
 # Block directories that shouldn't be crawled
-Disallow: /private/
 Disallow: /.obsidian/
-Disallow: /.git/
-Disallow: /.github/
-Disallow: /node_modules/
-Disallow: /.quartz-cache/
-Disallow: /docs/
 Disallow: /quartz/
-Disallow: /static/fonts/
-Disallow: /static/js/
-Disallow: /static/css/
 Disallow: /static/
