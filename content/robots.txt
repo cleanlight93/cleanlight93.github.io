@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
  
 # Sitemap location
-Sitemap: https://cleanlight93.github.io/sitemap.xml
+sitemap: https://cleanlight93.github.io/sitemap.xml
  
 # Block directories that shouldn't be crawled
 Disallow: /private/
@@ -16,3 +16,4 @@ Disallow: /quartz/
 Disallow: /static/fonts/
 Disallow: /static/js/
 Disallow: /static/css/
+Disallow: /static/
