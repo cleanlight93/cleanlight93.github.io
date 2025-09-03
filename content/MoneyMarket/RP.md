@@ -20,11 +20,11 @@ RP시장은 2024년 기준, 거래량 기준으로 콜시장의 10배에 달하�
 
 ---
 
-<p alien = "center">
+<p align = "center">
 	<img src = "20190917RP.png">
 </p>
 
-<p alien = "center">
+<p align = "center">
 	<img src = "20190917FF.png">
 </p>
 
