@@ -5,6 +5,8 @@ tags:
   - 거시경제학
   - 경제성장
   - 내생적성장
+  - QualityLadder
+  - RnD
 description: Quality Ladder Model
 ---
 ## 개요
