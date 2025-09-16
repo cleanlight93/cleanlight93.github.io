@@ -7,6 +7,8 @@ tags:
   - 내생적성장
   - QualityLadder
   - RnD
+  - 규모의효과
+  - ScaleEffect
 description: Quality Ladder Model
 ---
 ## 개요
