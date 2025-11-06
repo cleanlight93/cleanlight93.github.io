@@ -6,6 +6,7 @@ tags:
   - OIS
   - FICC
   - 금융
+  - 장외시장
 description: IRS,OIS 계산
 ---
 KOFR OIS의 CCP에 의한 중앙청산 도입을 위한 규정 예고. 시행세칙까지 완전히 개정될시 CCP에서 사용하는 금리스왑 계산 산식 역시 세칙에서 공개될 것.
