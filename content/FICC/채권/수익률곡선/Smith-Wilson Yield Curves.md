@@ -17,13 +17,13 @@ description: Smith-Wilson Yield Curves
 
 Solvency 2 directive의 article 77에서는 다음과 같이 말하고 있음.
 
->  *The best estimate shall correspond to the probability-weighted average of future cash-flows, taking account of the time value of money (expected present value of future cash-flows), using the relevant risk-free interest rate term structure. 
+>  *The best estimate shall correspond to the probability-weighted average of future cash-flows, taking account of the time value of money (expected present value of future cash-flows), using the relevant risk-free interest rate term structure.*
 >  
->  The calculation of the best estimate shall be based upon up-to-date and credible information and realistic assumptions and be performed using adequate, applicable and relevant actuarial and statistical methods.
+>  *The calculation of the best estimate shall be based upon up-to-date and credible information and realistic assumptions and be performed using adequate, applicable and relevant actuarial and statistical methods.*
 >  
->  The cash-flow projection used in the calculation of the best estimate shall take account of all the cash in- and out-flows required to settle the insurance and reinsurance obligations over the lifetime thereof.
+>  *The cash-flow projection used in the calculation of the best estimate shall take account of all the cash in- and out-flows required to settle the insurance and reinsurance obligations over the lifetime thereof.*
 >  
->  The best estimate shall be calculated gross, without deduction of the amounts recoverable from reinsurance contracts and special purpose vehicles. Those amounts shall be calculated separately, in accordance with Article 81.*
+>  *The best estimate shall be calculated gross, without deduction of the amounts recoverable from reinsurance contracts and special purpose vehicles. Those amounts shall be calculated separately, in accordance with Article 81.*
 
 즉 다음과 같은 형태.
 $$
