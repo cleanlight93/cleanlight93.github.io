@@ -9,7 +9,7 @@ tags:
 description: 디플레이터(deflator)
 ---
 ## 정의
-
+---
 deflate는 아래와 같은 뜻을 가지고 있다.
 
 > *to cause (prices, costs, etc.) to decrease
@@ -23,6 +23,6 @@ D_t = \frac{V_t}{R_t}=\frac{\mathbf{p}_t\,\cdot\,\mathbf{q}_t}{\mathbf{p}_b\,\cd
 $$
 로 정의된다. 또한 이 때 디플레이터는 파셰 가격지수와 동일하게 된다. 그리고 GDP 디플레이터 역시 위와 같은 방법으로 계산한다.
 
----
 ## 참고
+---
 [Wiki-Price index](https://en.wikipedia.org/wiki/Price_index)
