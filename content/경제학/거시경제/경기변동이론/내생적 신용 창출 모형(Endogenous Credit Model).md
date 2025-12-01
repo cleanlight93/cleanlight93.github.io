@@ -43,3 +43,4 @@ description: 내생적 신용 창출 모형(Endogenous Credit Model)
 * [[The Macroeconomics of Shadow Banking.pdf]]
 * [[Monetary Transmission through Shadow Banks.pdf]]
 * [[Understanding Bank and Nonbank Credit Cycles- A Structural Exploration.pdf]]
+* [[Bank Credit and Money Creation in a DSGE Model of a Small Open Economy.pdf]]
