@@ -19,6 +19,8 @@ SFC는 대략적으로 다음과 같은 구조를 가진다. 첫째, 회계 블�
 
 이에 따라, 경제의 동학은 시간에 따라 자산 및 부채 스톡이 갱신되면서 전개된다. 각 기간의 플로우가 다음 기간의 스톡을 결정하고, 스톡 및 스톡/플로우 비율이 다시 의사결정에 피드백을 주면서 일련의 연쇄가 발생한다.
 
+특히, 생산물 시장에서 **가격을 통한 시장 청산이 이루어지지 않으며**, 재고 변동과 같은 수량 신호가 핵심적인 조정 메커니즘으로 작용한다.
+
 
 [Wiki -Stock-flow consistent model](https://en.wikipedia.org/wiki/Stock-flow_consistent_model?utm_source=chatgpt.com) 및 Godley의 [Monetary Economics](https://web.archive.org/web/20131104111947/http://www.palgrave.com/products/title.aspx?is=0230500552#Description)참고.
 
@@ -33,8 +35,13 @@ SFC는 대략적으로 다음과 같은 구조를 가진다. 첫째, 회계 블�
 
 ---
 **참고문서**
-* Wynne Godley and Marc Lavoie, 2007. _Monetary Economics: An Integrated Approach to Credit, Money, Income, Production and Wealth_, Palgrave MacMillan.([링크](https://web.archive.org/web/20131104111947/http://www.palgrave.com/products/title.aspx?is=0230500552#Description))
+* Wynne Godley and Marc Lavoie, 2012. _Monetary Economics: An Integrated Approach to Credit, Money, Income, Production and Wealth_, Palgrave MacMillan.([[Agent based-stock flow consistent macroeconomics_errta.pdf|pdf]])
 * [[포스트케인지언 성장이론의 현 단계와 발전과제.pdf]]
 * [[소규모 개방경제에서 일자리보장제의 거시경제효과 분석.pdf]]
+* [[Godley versus Tobin on monetary matters.pdf]]
 * [[Stock-flow Consistent Macroeconomic Models- A Survey.pdf]]
 * [[Stock-flow Consistent Modeling through the Ages.pdf]]
+* [[Agent based-stock flow consistent macroeconomics.pdf]]
+* [[Agent based-stock flow consistent macroeconomics_errta.pdf]]
+* [[agent-based-models-understanding-the-economy-from-the-bottom-up.pdf]]
+* [[Agent-based modeling at central banks- recent developments and new challenges.pdf]]
