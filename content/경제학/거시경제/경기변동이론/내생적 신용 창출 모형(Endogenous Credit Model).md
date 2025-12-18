@@ -1,6 +1,6 @@
 ---
 title: 내생적 신용 창출 모형(Endogenous Credit Model)
-date: 2025-11-29
+date: 2025-12-18
 tags:
   - 거시경제학
   - 신용창조
@@ -35,6 +35,7 @@ description: 내생적 신용 창출 모형(Endogenous Credit Model)
 
 또한 이런 내생적 신용 창출을 명시적으로 모형화 한 것은 [[Godley의 Stock–Flow Consistent 모형|포스트 케인지안 문헌]]에서 많이 보인다고...
 
+## IMF(2025) - Inside (the) Money Machine
 ---
 **2025.12.18. 추가**
 
