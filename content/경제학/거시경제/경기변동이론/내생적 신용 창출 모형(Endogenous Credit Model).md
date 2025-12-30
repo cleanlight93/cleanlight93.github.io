@@ -49,12 +49,12 @@ description: 내생적 신용 창출 모형(Endogenous Credit Model)
 	* Maturity:  단기부채로 장기자산을 조달하며 생기는 만기불일치 리스크.
 	* Regulatory Constraints: 자기자본규제, 유동성규제, 중앙은행으로부터의 차입과 관련된 담보적격성 규제, 지급준비금 요건 등
 	* Demand Constraints: 금리에 대한 비금융민간부문의 대출탄력성 반응을 포함한 일반적인 거시경제조건
-* 기존 연구에는 이를 모두 동시에 다룬 거시-금융 모형은 존재하지 않았다. 이를 최초로 통합을 한 것이 바로 이 페이퍼의 의미이다. 아래는 기존 모형들과 이 페이퍼와의 차이.
+* 기존 연구에는 이를 모두 동시에 다룬 거시-금융 모형은 존재하지 않았다. 이를 최초로 통합을 한 것이 바로 이 페이퍼의 의의이다. 아래는 기존 모형들과 이 페이퍼와의 차이.
 	* Bernanke et al. (1999) 및 Carlstrom and Fuerst (1997)의 금융 가속기 모델: 이들은 비대칭 정보가 금융 중개에서 외부 자금 조달 프리미엄(external finance premium)을 유발하는 방식을 보여주었지만, 은행 자체는 본질적으로 Veil로 취급하고 비금융 회사의 순자산에 초점
-	* Kiyotaki and Moore (1997) 프레임워크: 기업이 대출을 받을 때 담보 제약에 직면하는 상황에 초점. 즉 기업이 중심적.
+	* Kiyotaki and Moore (1997): 기업이 대출을 받을 때 담보 제약에 직면하는 상황에 초점. 즉 기업이 중심적.
 	* Gertler and Kiyotaki (2010), Cúrdia and Woodford (2010) 등: 은행은 실물 자원(real resources)을 중개함. 은행은 먼저 예금을 **유치하고 나서야** 대출을 하는 기관
 	* Gertler and Karadi (2011): 이 DSGE 모델은 은행의 대차대조표가 대출 결정을 제약한다는 점을 특징으로 하지만, 뱅크런 및 유동성 경색 역할이 없음
-	* Gertler and Kiyotaki (2015): 뱅크런 가능성을 도입했지만, 현실에서 뱅크런 및 그 거시적 영향과 긴밀히 연결된 중앙은행의 최종 대부자(lender of last resort) 통화 운영의 정량적 역할이 없음
+	* Gertler and Kiyotaki (2015): 뱅크런 가능성을 도입했지만, 중앙은행의 최종 대부자(lender of last resort)로서의 역할이 없음
 	* Benes et al. (2014); [[Banks are not intermediaries of loanable funds and why this matters.pdf|Jakab and Kumhof (2015)]]: 은행의 지급능력 리스크(solvency risks)와 내생적 화폐 창조 역할을 다루었으나, 은행이 직면할 수 있는 유동성 및 만기불일치 리스크는 다루지 않았음.
 
 * 한편 [[대차대조표 불황]]에서와 같이 비금융민간기업들의 목적함수 자체가 바뀌어서 '차입수요가 아예 사라져버리는 상황'은 모델링하지 않았음.
