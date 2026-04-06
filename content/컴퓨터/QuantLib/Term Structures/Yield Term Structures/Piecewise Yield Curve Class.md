@@ -65,3 +65,9 @@ PiecewiseSplineCubicDiscount
 </center>
 
 * `PiecewiseLinearZero`는 무이표금리(Spot Rate)를 선형보간함. linear CC zero 방식의 보간방식과 동일. 위와 달리 선도금리가 동일한 값으로 연속해서 나오지는 않음. 그러나 할인커브는 덜 매끈한 형태.
+
+
+
+---
+**참고문서**
+* [[수익률곡선 개요]]

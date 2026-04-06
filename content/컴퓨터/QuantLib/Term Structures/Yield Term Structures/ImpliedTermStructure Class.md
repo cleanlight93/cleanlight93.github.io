@@ -26,3 +26,8 @@ ql.ImpliedTermStructure(YieldTermStructure, date)
 여기서 중요한 점은, implied term structure는 <u>원본 term structure의 forward rate, discount factor 등을 그대로 보존하되, 단지 기준 날짜만을 옮겨 해석하는 방식으로 동작</u>한다는 것.
 
 만기일이나 쿠폰 지급일과 같은 실제 캘린더상의 계약 날짜는 원본과 동일하게 유지됨. 그러나, implied term structure에서 기준일이 이동하므로, 그 기준일을 출발점으로 하는 시간 간격(time to maturity, time fraction)이 새롭게 계산됨. 따라서 만기까지의 잔존기간이 달라지고, 그에 따라 discount factor와 forward rate 해석이 달라짐.
+
+
+---
+**참고문서**
+* [[수익률곡선 개요]]
