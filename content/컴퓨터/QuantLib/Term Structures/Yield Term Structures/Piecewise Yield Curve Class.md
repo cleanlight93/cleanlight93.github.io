@@ -19,15 +19,10 @@ description: Piecewise Yield Curve Class
 C++에서 생성자(Constructors)는
 ```C++
 PiecewiseYieldCurve (const Date &referenceDate, std::vector< ext::shared_ptr< typename Traits::helper > > instruments, const DayCounter &dayCounter, const std::vector< Handle< Quote > > &jumps={}, const std::vector< Date > &jumpDates={}, const Interpolator &i={}, bootstrap_type bootstrap={})
-
 PiecewiseYieldCurve (const Date &referenceDate, std::vector< ext::shared_ptr< typename Traits::helper > > instruments, const DayCounter &dayCounter, const Interpolator &i, bootstrap_type bootstrap={})
-
 PiecewiseYieldCurve (const Date &referenceDate, std::vector< ext::shared_ptr< typename Traits::helper > > instruments, const DayCounter &dayCounter, bootstrap_type bootstrap)
-
 PiecewiseYieldCurve (Natural settlementDays, const Calendar &calendar, std::vector< ext::shared_ptr< typename Traits::helper > > instruments, const DayCounter &dayCounter, const std::vector< Handle< Quote > > &jumps={}, const std::vector< Date > &jumpDates={}, const Interpolator &i={}, bootstrap_type bootstrap={})
-
 PiecewiseYieldCurve (Natural settlementDays, const Calendar &calendar, std::vector< ext::shared_ptr< typename Traits::helper > > instruments, const DayCounter &dayCounter, const Interpolator &i, bootstrap_type bootstrap={})
-
 PiecewiseYieldCurve (Natural settlementDays, const Calendar &calendar, std::vector< ext::shared_ptr< typename Traits::helper > > instruments, const DayCounter &dayCounter, bootstrap_type bootstrap)
 ```
 이고, 
@@ -46,15 +41,10 @@ Python에서 이름으로 export된 목록은 이보다 더 범위가 적음.
 
 ```Python
 PiecewiseLogLinearDiscount
-
 PiecewiseLogCubicDiscount
-
 PiecewiseLinearZero
-
 PiecewiseCubicZero
-
 PiecewiseLinearForward
-
 PiecewiseSplineCubicDiscount
 ```
 
