@@ -7,6 +7,7 @@ tags:
   - TermStructure
   - 수익률곡선
   - Python
+  - Cpp
 description: FlatForward Class
 ---
 [QuantLib FlatForward Class Reference](https://www.quantlib.org/reference/class_quant_lib_1_1_flat_forward.html)
