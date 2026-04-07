@@ -1,12 +1,12 @@
 ---
-title: 2025.11.18. Jobless Unemployment와 Recession Clock
+title: Jobless Unemployment와 Recession Clock
 date: 2025-11-18
 tags:
   - 실업률
   - 경기변동
   - 거시경제학
   - 노동시장
-description: 2025.11.18. Jobless Unemployment와 Recession Clock
+description: Jobless Unemployment와 Recession Clock
 ---
 [Federal Reserve Bank of San Francisco - Recession Prediction on the Clock](https://www.frbsf.org/research-and-insights/publications/economic-letter/2022/12/recession-prediction-on-clock/)
 
