@@ -1,5 +1,5 @@
 ---
-title: OIS와 기준금리 경로 예상(작업 중)
+title: OIS와 기준금리 경로 예상 방법론(작업 중)
 date: 2025-11-19
 tags:
   - FICC
@@ -8,7 +8,7 @@ tags:
   - OIS
   - 수익률곡선
   - 선도금리
-description: OIS와 기준금리 경로 예상(작업 중)
+description: OIS와 기준금리 경로 예상 방법론(작업 중)
 ---
 * [Market yield expectations and forward yields](https://xuruilong100.github.io/posts/%E5%B8%82%E5%9C%BA%E6%94%B6%E7%9B%8A%E7%8E%87%E9%A2%84%E6%9C%9F%E4%B8%8E%E8%BF%9C%E6%9C%9F%E6%94%B6%E7%9B%8A%E7%8E%87/) ([[Market Yield Expectations and Forward Yields.pdf|해당 페이지 인쇄 - pdf 저장본]])
 
