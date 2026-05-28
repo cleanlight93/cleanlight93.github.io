@@ -11,7 +11,9 @@ tags:
   - ACM
 description: Adrian-Crump-Moench(ACM) Term Structure Model(작성 중)
 ---
-_**Last Updated: 2026.01.19.**_
+_**Last Updated: 2026.05.28.**_
+
+
 
 추정 방법론을 더 자세하게 수정할 필요가 있음.
 
@@ -147,3 +149,10 @@ $$
 을 계산한다.
 
 ---
+**Update**
+
+2026.05.28.일자 텀프리미엄 근황.
+
+<center>
+    <img src = "Pasted image 20260528102154.png">
+</center>
