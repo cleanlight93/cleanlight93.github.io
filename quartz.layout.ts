@@ -82,12 +82,12 @@ export const defaultContentPageLayout: PageLayout = {
   // ── 본문 아래 영역 ────────────────────────────────────────────────────────────
   afterBody: [
     // index 전용, 깊이 제한 없는 전체 그래프
-    Component.ConditionalRender({
-      component: Component.Graph({
-        localGraph: { depth: -1 },
-      }),
-      condition: (page) => page.fileData.slug === "index",
-    }),
+    //Component.ConditionalRender({
+    //  component: Component.Graph({
+    //    localGraph: { depth: -1 },
+    //  }),
+    //  condition: (page) => page.fileData.slug === "index",
+    //}),
     // index 페이지에만 최근 글 위젯을 붙인다
     Component.ConditionalRender({
       component: Component.RecentNotes({
